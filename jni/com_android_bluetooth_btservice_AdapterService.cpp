@@ -690,13 +690,9 @@ static void classInitNative(JNIEnv* env, jclass clazz) {
 
     char type[64];
     check_wifi_chip_type_string(type);
-    if (!strncmp(type, "RTL", 3)) {
-        ALOGD("%s, load %s.default.so", __func__, BT_STACK_RTK_MODULE_ID);
-        err = hw_get_module(BT_STACK_RTK_MODULE_ID, (hw_module_t const**)&module);
-    } else {
-        ALOGD("%s, load %s.default.so", __func__, id);
-        err = hw_get_module(id, (hw_module_t const**)&module);
-    }
+
+    ALOGD("%s, load %s.default.so", __func__, id);
+    err = hw_get_module(id, (hw_module_t const**)&module);
 
     if (err == 0) {
         hw_device_t* abstraction;
